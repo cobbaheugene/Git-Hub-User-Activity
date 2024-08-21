@@ -22,6 +22,14 @@ def get_latest_events(username):
                 print(f"- :smiley: created issue {event['payload']['issue']['number']}")
             elif event['type'] == 'WatchEvent':
                 print(f"- :smiley: starred {event['repo']['name']}")
+            elif event['type'] == 'CreateEvent':
+                print(f"- :smiley: created {event['payload']['ref_type']} {event['payload']['ref']}")
+            elif event['type'] == 'DeleteEvent':
+                print(f"- :smiley: deleted {event['payload']['ref_type']} {event['payload']['ref']}")
+            elif event['type'] == 'ForkEvent':
+                print(f"- :smiley: forked {event['repo']['name']}")
+            elif event['type'] == 'PullRequestEvent':
+                print(f"- :smiley: opened pull request {event['payload']['pull_request']['title']}")
     else:
         print(f"Error fetching events for {username}: {response.status_code}")
 
